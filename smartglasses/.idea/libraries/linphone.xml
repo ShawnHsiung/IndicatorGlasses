@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="linphone">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/linphone.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs/linphone.jar!/common" />
+      <root url="jar://$PROJECT_DIR$/libs/linphone.jar!/j2se" />
+    </SOURCES>
+  </library>
+</component>
