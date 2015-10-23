@@ -6,4 +6,5 @@ package oulu.university.commandsender;
 public interface ICallback {
         void callBackLinphoneMessageReceived(String linphoneMessageValue);
         void callBackLinphoneStatusChanged(String linphoneOnlineStatueValue);
+        void callBackLinphoneFriendStatusChanged(String LinphoneOnlineStatusFriendValue);
 }

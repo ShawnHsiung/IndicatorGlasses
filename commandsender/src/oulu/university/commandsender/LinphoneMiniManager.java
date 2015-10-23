@@ -192,8 +192,14 @@ public class LinphoneMiniManager implements LinphoneCoreListener,ICallBackSendMe
     }
 
     @Override
-    public void notifyPresenceReceived(LinphoneCore lc, LinphoneFriend lf) {
-        //MainActivity.LinphoneBtn.setText("presence");
+    public void notifyPresenceReceived(LinphoneCore lc, final LinphoneFriend lf) {
+//        LinphoneAddress friend_address = lf.getAddress();
+        ((Activity) mContext).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ic.callBackLinphoneFriendStatusChanged(lf.getStatus().toString());
+            }
+        });
     }
 
     @Override
