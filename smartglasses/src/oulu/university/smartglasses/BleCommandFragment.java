@@ -113,7 +113,8 @@ public class BleCommandFragment extends DialogFragment implements View.OnClickLi
 
     public void SendValueToBleReceiver(String CommandValue) {
         //mWriteCharactristc.
-        byte[] strBytes = CommandValue.getBytes();
+        //byte[] strBytes = CommandValue.getBytes();
+        byte[] strBytes = hexStringToByteArray(CommandValue);
         byte[] bytes = ((DeviceControlActivity) getActivity()).mWriteCharacteristic.getValue();
         //mWriteCharacteristic.
         if (strBytes == null) {
@@ -177,5 +178,15 @@ public class BleCommandFragment extends DialogFragment implements View.OnClickLi
                 linphoneBtn.setTag("Connect");
         }
 
+    }
+
+    public static byte[] hexStringToByteArray(String s) {
+        int len = s.length();
+        byte[] data = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+                    + Character.digit(s.charAt(i+1), 16));
+        }
+        return data;
     }
 }
