@@ -18,7 +18,7 @@ import java.util.logging.Handler;
 /**
  * Created by afirouzi on 10.9.2015.
  */
-public class MainActivity extends Activity implements Runnable {
+public class MainActivity extends Activity {
     public static Button ConnectionBtn;
     private Button MessageSettingBtn;
 
@@ -63,8 +63,4 @@ public class MainActivity extends Activity implements Runnable {
         super.onDestroy();
     }
 
-    @Override
-    public void run() {
-
-    }
 }

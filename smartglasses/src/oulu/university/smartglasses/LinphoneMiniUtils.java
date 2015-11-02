@@ -1,5 +1,7 @@
 package oulu.university.smartglasses;
 
+// you can get rid of it
+
 import android.content.Context;
 
 import java.io.File;

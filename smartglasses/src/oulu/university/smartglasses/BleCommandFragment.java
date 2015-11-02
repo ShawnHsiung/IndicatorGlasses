@@ -1,5 +1,7 @@
 package oulu.university.smartglasses;
 
+//Some change
+
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -163,6 +165,7 @@ public class BleCommandFragment extends DialogFragment implements View.OnClickLi
         linphoneTextView.setText(linphoneMessageValue);
     }
 
+    //get rid of this method
     @Override
     public void callBackLinphoneStatusChanged(String linphoneOnlineStatueValue) {
         linphoneOnlineStatueValue=  linphoneOnlineStatueValue.toUpperCase();

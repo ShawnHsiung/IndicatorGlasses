@@ -1,5 +1,7 @@
 package oulu.university.smartglasses;
 
+// you can delete this class, but there is something to do before
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -136,6 +138,8 @@ public class LinphoneMiniManager implements LinphoneCoreListener {
         mLinphoneCore.setCpuCount(availableCores);
     }
 
+
+    //When mesage is received call this method
     @Override
     public void messageReceived(LinphoneCore lc, LinphoneChatRoom cr, final LinphoneChatMessage message) {
         ((Activity) mContext).runOnUiThread(new Runnable() {
