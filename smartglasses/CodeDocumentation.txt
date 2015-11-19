@@ -1,0 +1,25 @@
+Main Activity is the starting point of app.
+Activities are categorized in three categories:
+
+1.	Linphone: 
+
+LinphoneMiniManager
+LinphoneMiniUtils
+
+
+2.	BLE:
+
+DeviceScanActivity (searching for BLE device)
+DeviceControlActivity (Connecting to the BLE device)
+BluetoothService 
+SampleGattAttributes
+BleCommandFragment (Fragment activity to send message)
+
+
+3.	LED Pattern Setting:
+
+LedProperty (simple class to define some propeties)
+MessageSetting (activity to select the command and save the command pattern)
+PickColorFragment (Activity to select pattern of color, frequency and cycle for each selected command)
+
+
