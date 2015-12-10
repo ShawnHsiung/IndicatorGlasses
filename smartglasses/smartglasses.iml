@@ -17,5 +17,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="linphone" level="project" />
     <orderEntry type="library" name="gcm" level="project" />
+    <orderEntry type="library" name="gson-2.5" level="project" />
   </component>
 </module>

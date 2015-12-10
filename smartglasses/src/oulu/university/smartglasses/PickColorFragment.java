@@ -20,8 +20,6 @@ import android.widget.SeekBar;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -37,6 +35,8 @@ public class PickColorFragment extends DialogFragment implements View.OnClickLis
     private List<LedProperty> ledProperties = new ArrayList<>();
     EditText frequencyEditText;
     EditText dutycycleEditText;
+    EditText commandNameEditText;
+    int position;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +44,7 @@ public class PickColorFragment extends DialogFragment implements View.OnClickLis
 
         final String commandName = getArguments().getString("command_name");
         String commandBinary = getArguments().getString("command_binary");
+        position = Integer.parseInt(getArguments().getString("position"));
         getDialog().setTitle("Set blinking pattern");
         LinearGradient test = new LinearGradient(0.f, 0.f, 800.f, 0.0f,
                 new int[]{0xFF000000, 0xFF0000FF, 0xFF00FF00, 0xFF00FFFF,
@@ -129,6 +130,9 @@ public class PickColorFragment extends DialogFragment implements View.OnClickLis
         Button ledbtn14 = (Button) v.findViewById(R.id.led14);
         ledbtn14.setOnClickListener(this);
 
+        commandNameEditText = (EditText)v.findViewById(R.id.commandNameEditText);
+        commandNameEditText.setText(commandName);
+
         Button cancelBtn = (Button) v.findViewById(R.id.cancel_button);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,21 +161,13 @@ public class PickColorFragment extends DialogFragment implements View.OnClickLis
                 }
                 // Add 26 bit which is not in use
                 command = command + "00000000000000000000000000";
-                switch (commandName) {
-                    case "left":
-                        ((MessageSetting) getActivity()).LeftCommand.setText(command);
-                        break;
-                    case "right":
-                        ((MessageSetting) getActivity()).RightCommand.setText(command);
-                        break;
-                    case "forward":
-                        ((MessageSetting) getActivity()).ForwardCommand.setText(command);
-                        break;
-                    case "stop":
-                        ((MessageSetting) getActivity()).StopCommand.setText(command);
-                        break;
-                    default:
-                }
+
+                ((SingleSetRow)((SetProperty) getActivity()).customAdapter.getItem(position)).setBtnText = commandNameEditText.getText().toString();
+                ((SingleSetRow)((SetProperty) getActivity()).customAdapter.getItem(position)).commandBinary = command;
+                ((SetProperty) getActivity()).commandProperties.get(position).commandName = commandNameEditText.getText().toString();
+                ((SetProperty) getActivity()).commandProperties.get(position).commandBinary = command;
+                ((SetProperty) getActivity()).customAdapter.notifyDataSetChanged();
+                ((SetProperty) getActivity()).savePreference(((SetProperty) getActivity()).commandProperties);
                 dismiss();
                 return;
             }

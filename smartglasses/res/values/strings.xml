@@ -16,6 +16,8 @@
     <string name="ConnectionBtnString">BLE Connection</string>
     <string name="label_command">Command</string>
     <string name="MessageSettingBtnString">Message Setting</string>
+    <string name="SetPropertiesBtn">Set Properties</string>
+    <string name="AddNewButton">Add New Button</string>
     <!-- Menu items -->
     <string name="menu_connect">Connect</string>
     <string name="menu_disconnect">Disconnect</string>

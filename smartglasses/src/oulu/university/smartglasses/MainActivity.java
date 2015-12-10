@@ -21,6 +21,7 @@ import java.util.logging.Handler;
 public class MainActivity extends Activity {
     public static Button ConnectionBtn;
     private Button MessageSettingBtn;
+    private Button SetPropertiesBtn;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -29,8 +30,10 @@ public class MainActivity extends Activity {
 
         ConnectionBtn = (Button)findViewById(R.id.ConnectionBtn);
         MessageSettingBtn = (Button)findViewById(R.id.MessageSettingBtn);
+        SetPropertiesBtn = (Button)findViewById(R.id.SetPropertiesBtn);
         ConnectionBtn.getBackground().setColorFilter(Color.argb(255, 150, 100, 200), PorterDuff.Mode.DARKEN);
         MessageSettingBtn.getBackground().setColorFilter(Color.argb(255, 150, 100, 200), PorterDuff.Mode.DARKEN);
+        SetPropertiesBtn.getBackground().setColorFilter(Color.argb(255, 150, 100, 200), PorterDuff.Mode.DARKEN);
 
         ConnectionBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -43,6 +46,13 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent messageSettingIntent = new Intent(MainActivity.this, MessageSetting.class);
                 MainActivity.this.startActivity(messageSettingIntent);
+            }
+        });
+
+        SetPropertiesBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent messageSetPropertiesIntent = new Intent(MainActivity.this, SetProperty.class);
+                MainActivity.this.startActivity(messageSetPropertiesIntent);
             }
         });
     }

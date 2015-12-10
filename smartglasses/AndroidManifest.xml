@@ -28,6 +28,7 @@
         <activity android:name=".DeviceScanActivity"/>
         <activity android:name=".DeviceControlActivity"/>
         <activity android:name=".MessageSetting"/>
+        <activity android:name=".SetProperty"/>
         <service android:name=".BluetoothLeService" android:enabled="true"/>
 
     </application>

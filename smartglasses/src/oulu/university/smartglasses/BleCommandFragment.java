@@ -183,6 +183,7 @@ public class BleCommandFragment extends DialogFragment implements View.OnClickLi
 
     }
 
+
     public static byte[] hexStringToByteArray(String s) {
         int len = s.length();
         byte[] data = new byte[len / 2];

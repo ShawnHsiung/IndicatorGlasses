@@ -1,6 +1,7 @@
 package oulu.university.smartglasses;
 
 import android.app.Activity;
+import android.app.Application;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.bluetooth.BluetoothGattCharacteristic;
@@ -134,9 +135,9 @@ public class DeviceControlActivity extends Activity {
             };
 
     private void showCharactWriteDialog() {
-        FragmentManager bleCommandFragmentManager = getFragmentManager();
-        DialogFragment bleCommandFragment = new BleCommandFragment();
-        bleCommandFragment.show(bleCommandFragmentManager, "ble_command_fragment");
+        FragmentManager bleSendFragmentManager = getFragmentManager();
+        DialogFragment bleSendFragment = new BleSendFragment();
+        bleSendFragment.show(bleSendFragmentManager, "ble_command_fragment");
     }
 
     public void writeCharacteristic(BluetoothGattCharacteristic characteristic) {
@@ -306,5 +307,45 @@ public class DeviceControlActivity extends Activity {
         intentFilter.addAction(BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED);
         intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
         return intentFilter;
+    }
+
+    public void SendValueToBleReceiver(String CommandValue) {
+        //mWriteCharactristc.
+        //byte[] strBytes = CommandValue.getBytes();
+        byte[] strBytes = hexStringToByteArray(CommandValue);
+        byte[] bytes = this.mWriteCharacteristic.getValue();
+        //mWriteCharacteristic.
+        if (strBytes == null) {
+            Toast.makeText(this, "Cannot get Value from EditText Widget", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (bytes == null) {
+            // maybe just write a byte into GATT
+            Toast.makeText(this, "Cannot get Values from mWriteCharacteristic", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (bytes.length <= strBytes.length) {
+            for (int i = 0; i < bytes.length; i++) {
+                bytes[i] = strBytes[i];
+            }
+        } else {
+            for (int i = 0; i < strBytes.length; i++) {
+                bytes[i] = strBytes[i];
+            }
+        }
+
+        this.mWriteCharacteristic.setValue(bytes);
+        this.writeCharacteristic(this.mWriteCharacteristic);
+        Toast.makeText(this, "Sent!!!", Toast.LENGTH_SHORT).show();
+    }
+
+    public static byte[] hexStringToByteArray(String s) {
+        int len = s.length();
+        byte[] data = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+                    + Character.digit(s.charAt(i+1), 16));
+        }
+        return data;
     }
 }
