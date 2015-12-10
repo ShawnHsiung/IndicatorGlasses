@@ -1,7 +1,6 @@
 package oulu.university.smartglasses;
 
 import android.app.Activity;
-import android.app.Application;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.bluetooth.BluetoothGattCharacteristic;
@@ -126,7 +125,7 @@ public class DeviceControlActivity extends Activity {
                             mCommand.setText("Write");
                             mWriteCharacteristic = characteristic;
                             // popup an dialog to write something.
-                            showCharactWriteDialog();
+                            showCharacterWriteDialog();
                         }
                         return true;
                     }
@@ -134,9 +133,11 @@ public class DeviceControlActivity extends Activity {
                 }
             };
 
-    private void showCharactWriteDialog() {
-        FragmentManager bleSendFragmentManager = getFragmentManager();
-        DialogFragment bleSendFragment = new BleSendFragment();
+    FragmentManager bleSendFragmentManager;
+    DialogFragment bleSendFragment;
+    private void showCharacterWriteDialog() {
+        bleSendFragmentManager = getFragmentManager();
+        bleSendFragment = new BleSendFragment();
         bleSendFragment.show(bleSendFragmentManager, "ble_command_fragment");
     }
 
@@ -187,6 +188,9 @@ public class DeviceControlActivity extends Activity {
         if (mBluetoothLeService != null) {
             final boolean result = mBluetoothLeService.connect(mDeviceAddress);
             Log.d(TAG, "Connect request result=" + result);
+            bleSendFragmentManager = getFragmentManager();
+            bleSendFragment = new BleSendFragment();
+            bleSendFragment.show(bleSendFragmentManager, "ble_command_fragment");
         }
     }
 
@@ -194,6 +198,7 @@ public class DeviceControlActivity extends Activity {
     protected void onPause() {
         super.onPause();
         unregisterReceiver(mGattUpdateReceiver);
+        bleSendFragment.dismiss();
     }
 
     @Override

@@ -76,6 +76,8 @@ public class SetCustomAdapter extends BaseAdapter {
             public void onClick(View v) {
                 //do something
                 list.remove(position); //or some other task
+                ((SetProperty) context).commandProperties.remove(position);
+                ((SetProperty) context).savePreference(((SetProperty) context).commandProperties);
                 notifyDataSetChanged();
             }
         });

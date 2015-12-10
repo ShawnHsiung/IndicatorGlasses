@@ -2,11 +2,15 @@ package oulu.university.smartglasses;
 
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.google.gson.Gson;
@@ -18,17 +22,22 @@ import java.util.*;
 /**
  * Created by Aryan on 12/7/2015.
  */
-public class BleSendFragment extends DialogFragment{
+public class BleSendFragment extends DialogFragment implements View.OnClickListener{
     ListView ListOfBtn;
     SharedPreferences mPrefs;
     ArrayList<SingleSendRow> listItems = new ArrayList<SingleSendRow>();
     SendCustomAdapter customAdapter;
     List<CommandProperty> commandProperties = new ArrayList<>();
+    Button settingBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.ble_send_fragment_layout,container,false);
+        getDialog().setTitle("Set & Send");
         customAdapter = new SendCustomAdapter(getActivity(),listItems);
+        settingBtn = (Button)v.findViewById(R.id.settingBtn);
+        settingBtn.getBackground().setColorFilter(Color.argb(255, 150, 100, 200), PorterDuff.Mode.DARKEN);
+        settingBtn.setOnClickListener(this);
         ListOfBtn = (ListView)v.findViewById(R.id.sendCommandListView);
         mPrefs =getActivity().getSharedPreferences("StoredData", Context.MODE_PRIVATE);
         commandProperties = loadPreference();
@@ -173,5 +182,9 @@ public class BleSendFragment extends DialogFragment{
         return commandProperties;
     }
 
-
+    @Override
+    public void onClick(View v) {
+        Intent setPropertyIntent = new Intent(getActivity(),SetProperty.class);
+        getActivity().startActivity(setPropertyIntent);
+    }
 }
