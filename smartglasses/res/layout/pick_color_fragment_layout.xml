@@ -132,6 +132,28 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <SeekBar
+            android:id="@+id/seekbar_R"
+            android:layout_width="300dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="10px"
+            android:max="100"
+            android:progress="50"></SeekBar>
+    <SeekBar
+            android:id="@+id/seekbar_G"
+            android:layout_width="300dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="10px"
+            android:max="100"
+            android:progress="50"></SeekBar>
+    <SeekBar
+            android:id="@+id/seekbar_B"
+            android:layout_width="300dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="10px"
+            android:max="100"
+            android:progress="50"></SeekBar>
     <SeekBar
             android:id="@+id/seekbar_font"
             android:layout_width="300dip"

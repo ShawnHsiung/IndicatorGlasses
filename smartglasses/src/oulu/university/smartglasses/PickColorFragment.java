@@ -38,6 +38,8 @@ public class PickColorFragment extends DialogFragment implements View.OnClickLis
     EditText commandNameEditText;
     int position;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.pick_color_fragment_layout, container, false);
@@ -53,42 +55,121 @@ public class PickColorFragment extends DialogFragment implements View.OnClickLis
         ShapeDrawable shape = new ShapeDrawable(new RectShape());
         shape.getPaint().setShader(test);
 
+        final SeekBar seekbarR = (SeekBar) v.findViewById(R.id.seekbar_R);
+        final SeekBar seekbarG = (SeekBar) v.findViewById(R.id.seekbar_G);
+        final SeekBar seekbarB = (SeekBar) v.findViewById(R.id.seekbar_B);
         final SeekBar seekBarFont = (SeekBar) v.findViewById(R.id.seekbar_font);
-        seekBarFont.setProgressDrawable((Drawable) shape);
+        //seekbarR.setProgressDrawable((Drawable) shape);
+        seekbarR.setMax(255);
+        seekbarR.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser){
+                    r = progress;
+                    seekbarR.setBackgroundColor(Color.argb(255,r,0,0));
+                    seekBarFont.setBackgroundColor(Color.argb(255,r,g,b));
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        //seekbarG.setProgressDrawable((Drawable) shape);
+        seekbarG.setMax(255);
+        seekbarG.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser){
+                g = progress;
+                seekbarG.setBackgroundColor(Color.argb(255,0,g,0));
+                    seekBarFont.setBackgroundColor(Color.argb(255,r,g,b));}
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        //seekbarB.setProgressDrawable((Drawable) shape);
+        seekbarB.setMax(255);
+        seekbarB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser){
+                    b = progress;
+                    seekbarB.setBackgroundColor(Color.argb(255,0,0,b));
+                    seekBarFont.setBackgroundColor(Color.argb(255,r,g,b));
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
+
+
+        //seekBarFont.setProgressDrawable((Drawable) shape);
         seekBarFont.setMax(256 * 7 - 1);
         seekBarFont.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    if (progress < 256) {
-                        b = progress;
-                    } else if (progress < 256 * 2) {
-                        g = progress % 256;
-                        b = 256 - progress % 256;
-                    } else if (progress < 256 * 3) {
-                        g = 255;
-                        b = progress % 256;
-                    } else if (progress < 256 * 4) {
-                        r = progress % 256;
-                        g = 256 - progress % 256;
-                        b = 256 - progress % 256;
-                    } else if (progress < 256 * 5) {
-                        r = 255;
-                        g = 0;
-                        b = progress % 256;
-                    } else if (progress < 256 * 6) {
-                        r = 255;
-                        g = progress % 256;
-                        b = 256 - progress % 256;
-                    } else if (progress < 256 * 7) {
-                        r = 255;
-                        g = 255;
-                        b = progress % 256;
-                    }
+//                    if (progress < 256) {
+//                        b = progress;
+//                    } else if (progress < 256 * 2) {
+//                        g = progress % 256;
+//                        b = 256 - progress % 256;
+//                    } else if (progress < 256 * 3) {
+//                        g = 255;
+//                        b = progress % 256;
+//                    } else if (progress < 256 * 4) {
+//                        r = progress % 256;
+//                        g = 256 - progress % 256;
+//                        b = 256 - progress % 256;
+//                    } else if (progress < 256 * 5) {
+//                        r = 255;
+//                        g = 0;
+//                        b = progress % 256;
+//                    } else if (progress < 256 * 6) {
+//                        r = 255;
+//                        g = progress % 256;
+//                        b = 256 - progress % 256;
+//                    } else if (progress < 256 * 7) {
+//                        r = 255;
+//                        g = 255;
+//                        b = progress % 256;
+//                    }
 
                     seekBarFont.setBackgroundColor(Color.argb(255, r, g, b));
                 }
             }
+
+
+
+
+
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
