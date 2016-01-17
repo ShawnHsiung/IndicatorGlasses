@@ -61,6 +61,7 @@ public class PickColorFragment extends DialogFragment implements View.OnClickLis
         final SeekBar seekBarFont = (SeekBar) v.findViewById(R.id.seekbar_font);
         //seekbarR.setProgressDrawable((Drawable) shape);
         seekbarR.setMax(255);
+        seekbarR.setBackgroundColor(Color.argb(255, r, 0, 0));
         seekbarR.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -84,6 +85,7 @@ public class PickColorFragment extends DialogFragment implements View.OnClickLis
 
         //seekbarG.setProgressDrawable((Drawable) shape);
         seekbarG.setMax(255);
+        seekbarG.setBackgroundColor(Color.argb(255, 0, g, 0));
         seekbarG.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -106,6 +108,7 @@ public class PickColorFragment extends DialogFragment implements View.OnClickLis
 
         //seekbarB.setProgressDrawable((Drawable) shape);
         seekbarB.setMax(255);
+        seekbarB.setBackgroundColor(Color.argb(255,0,0,b));
         seekbarB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

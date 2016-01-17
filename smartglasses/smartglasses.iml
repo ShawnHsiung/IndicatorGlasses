@@ -2,7 +2,11 @@
 <module type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="android" name="Android">
-      <configuration />
+      <configuration>
+        <proGuardCfgFiles>
+          <file>file://$MODULE_DIR$/../../../../Java/jdk1.8.0_20/tools/proguard/proguard-android.txt</file>
+        </proGuardCfgFiles>
+      </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
@@ -11,9 +15,12 @@
       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Android 5.1.1 Google APIs" jdkType="Android SDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="linphone" level="project" />
     <orderEntry type="library" name="gson-2.5" level="project" />
+    <orderEntry type="library" name="android-junit-report-1.5.8 (2)" level="project" />
+    <orderEntry type="library" name="gcm" level="project" />
+    <orderEntry type="library" name="GsonFormat1.2.1" level="project" />
   </component>
 </module>
